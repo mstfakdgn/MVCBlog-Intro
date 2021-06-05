@@ -1,0 +1,42 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<MVCBlog.Models.Blog>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        <div class="item mb-5">
+            <div class="media">
+                <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="@item.Foto" alt="image">
+                <div class="media-body">
+                    <h3 class="title mb-1"><a href="blog-post.html">@item.BlogBaslik</a></h3>
+                    <div class="meta mb-1"><span class="date">@item.BlogTarih</span><span class="time">@item.BlogOkunmaSuresi</span><span class="comment"><a href="#">@item.BlogOkunmaSayisi</a></span></div>
+                    @if (item.BlogIcerik.Length > 120)
+                    {
+                        <div class="intro">@Html.Raw(item.BlogIcerik.Substring(0, 120))...</div>
+                    }
+                    else
+                    {
+                        <div class="intro">@Html.Raw(item.BlogIcerik)</div>
+                    }
+                    <a class="more-link" href="Blog/BlogDetay/@item.BlogID">Devamını Oku &rarr;</a>
+                </div><!--//media-body-->
+            </div><!--//media-->
+        </div><!--//item-->
+    </div>
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet"/>
+<div class="row">
+    <div class="col-md-8">
+        <div class="pagedList pagination-lg">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
+</div>

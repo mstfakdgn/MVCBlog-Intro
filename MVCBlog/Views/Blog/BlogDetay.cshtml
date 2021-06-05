@@ -1,0 +1,35 @@
+﻿@model MVCBlog.Models.Blog
+
+@{
+    ViewBag.Title = "BlogDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+{
+
+    <article class="blog-post px-3 py-5 p-md-5">
+        <div class="container">
+            <header class="blog-post-header">
+                <h2 class="title mb-2">@Model.BlogBaslik</h2>
+                <div class="meta mb-3"><span class="date">@Model.BlogTarih</span><span class="time">@Model.BlogOkunmaSayisi</span><span class="comment"><a href="#">4 comments</a></span></div>
+            </header>
+
+            <div class="blog-post-body">
+              @Model.BlogIcerik
+            </div>
+
+        
+
+        </div><!--//container-->
+    </article>
+
+<script src="~/Content/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: '/Blog/OkumaArttir',
+            data: { blogid:@Model.BlogID},
+            type: 'POST'
+        });
+    })
+</script>

@@ -1,0 +1,63 @@
+﻿@model MVCBlog.Models.Blog
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div>
+    <h4>Detay</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogBaslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogBaslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogIcerik)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.BlogIcerik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto)
+            <img class="img-responsive" width="75" src="@Model.Foto" alt=".." />
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogOkunmaSayisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogOkunmaSayisi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogOkunmaSuresi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogOkunmaSuresi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogTarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogTarih)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Güncelle", "Edit", new { id = Model.BlogID }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index")
+</p>
